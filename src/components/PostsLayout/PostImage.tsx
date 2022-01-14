@@ -18,7 +18,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import store from '../../store';
+import post from '../../store/post';
 
 const PostImage: React.FC<{url: string; id: number}> = ({url, id}) => {
   const doubleTapRef = useRef();
@@ -38,8 +38,8 @@ const PostImage: React.FC<{url: string; id: number}> = ({url, id}) => {
   }, []);
 
   const handlePostLike = () => {
-    store.likedPost = id;
-    !store.likedPosts.includes(id) && store.likePost();
+    post.selectedId = id;
+    !post.likedPosts.includes(id) && post.like();
   };
 
   const onSingleTap = useCallback(() => {

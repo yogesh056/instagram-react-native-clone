@@ -21,7 +21,7 @@ import {
 import Icon from '../Icon';
 import PostImage from './PostImage';
 import {useNavigation} from '@react-navigation/native';
-import store from '../../store';
+import post from '../../store/post';
 
 const windowWidth = Dimensions.get('window').width;
 const Post: React.FC<PostDataType> = ({
@@ -54,7 +54,7 @@ const Post: React.FC<PostDataType> = ({
 
   //Footer components
 
-  //liked Person COllage
+  //liked Person Collage
   const LikesImageCollage = () => {
     return (
       <View style={{flexDirection: 'row'}}>
@@ -89,7 +89,7 @@ const Post: React.FC<PostDataType> = ({
           <Text style={[styles.verticalMargin]}>
             {'Liked by '}
             <Text style={[styles.boldFont, styles.lowercase]}>Will</Text>
-            {'and '}
+            {' and '}
             <Text style={[styles.boldFont]}>{likes - 1}</Text> others
           </Text>
         </View>
@@ -110,13 +110,12 @@ const Post: React.FC<PostDataType> = ({
     );
   };
   const handlePostLike = () => {
-    store.postId = id;
-    store.likedPosts.includes(id) ? store.unLikePost() : store.likePost();
+    post.selectedId = id;
+    post.likedPosts.includes(id) ? post.unLike() : post.like();
   };
 
   const handlePostComment = () => {
-    store.postId = id;
-    store.post = store.posts.find(data => data.id === id) as PostDataType;
+    post.selectPost(id);
     //@ts-ignore
     navigation.navigate('Comments');
   };
@@ -128,7 +127,7 @@ const Post: React.FC<PostDataType> = ({
           <TouchableOpacity onPress={() => handlePostLike()}>
             <Icon
               style={styles.icon}
-              url={store.likedPosts.includes(id) ? LikedIcon : LikeIcon}
+              url={post.likedPosts.includes(id) ? LikedIcon : LikeIcon}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => handlePostComment()}>
@@ -145,11 +144,13 @@ const Post: React.FC<PostDataType> = ({
     if (comments.length > 1) {
       return (
         <View style={[{flexDirection: 'row'}, styles.verticalMargin]}>
-          <Text
-            style={[
-              styles.boldFont,
-              {color: '#8e8e8e', fontSize: 15},
-            ]}>{`View all ${comments.length} comments`}</Text>
+          <TouchableOpacity onPress={() => handlePostComment()}>
+            <Text
+              style={[
+                styles.boldFont,
+                {color: '#8e8e8e', fontSize: 15},
+              ]}>{`View all ${comments.length} comments`}</Text>
+          </TouchableOpacity>
         </View>
       );
     } else if (comments.length) {
@@ -178,7 +179,7 @@ const Post: React.FC<PostDataType> = ({
       <View style={{height: 400}}>
         <FlatList
           data={images}
-          keyExtractor={data => data}
+          keyExtractor={(_, index) => index.toString()}
           bounces={false}
           decelerationRate={0}
           renderToHardwareTextureAndroid
