@@ -9,14 +9,13 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import {CommentDataType} from '../../models';
-import store from '../../store';
 import {useTextInput} from '../FormHook';
 import Comments from './Comments';
 
 import {observer} from 'mobx-react';
-const CommentObserver = observer(Comments);
-const CommentsLayout = () => {
+import post from '../../store/post';
+
+const CommentsLayout: React.FC<{}> = ({}) => {
   const [newComment, setNewComment, commentInput] = useTextInput(
     '',
     '',
@@ -27,18 +26,12 @@ const CommentsLayout = () => {
   );
 
   const handleComment = () => {
-    store.newComment = {comment: newComment, likes: 0, name: 'Mark'};
-    store.addComment();
+    post.newComment = {comment: newComment, likes: 0, name: 'Mark'};
+    post.addComment();
   };
 
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={store.post.comments}
-        renderItem={({item}: any) => {
-          return <CommentObserver {...item} />;
-        }}
-      />
+  const renderAddComment = () => {
+    return (
       <View style={styles.comment}>
         <Image
           style={styles.image}
@@ -56,21 +49,34 @@ const CommentsLayout = () => {
           <Text style={styles.buttonStyle}>Post</Text>
         </TouchableOpacity>
       </View>
+    );
+  };
+
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={post.selected.comments}
+        renderItem={({item}: any) => {
+          return <Comments {...item} />;
+        }}
+      />
+      {renderAddComment()}
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
     flex: 1,
     justifyContent: 'flex-end',
     flexDirection: 'column',
+    backgroundColor: 'white',
   },
   buttonStyle: {
     color: '#0095f6',
     margin: 5,
   },
   comment: {
+    margin: 10,
     flexDirection: 'row',
     alignSelf: 'stretch',
     justifyContent: 'space-between',
@@ -84,4 +90,4 @@ const styles = StyleSheet.create({
     marginVertical: 6,
   },
 });
-export default CommentsLayout;
+export default observer(CommentsLayout);
