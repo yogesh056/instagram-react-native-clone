@@ -26,7 +26,6 @@ interface ReelProps {
 
 const Reel: React.FC<ReelProps> = ({item, currentIndex}) => {
   const {index, likes, commentsCount, name, description, video} = item;
-  console.log('SSS', item);
   const videoRef = useRef(null);
   const onError = () => {};
   const onBuffer = () => {};
@@ -41,7 +40,9 @@ const Reel: React.FC<ReelProps> = ({item, currentIndex}) => {
         ref={videoRef}
         resizeMode="cover"
         repeat={true}
-        paused={index !== currentIndex}
+        muted={true}
+        // paused={index !== currentIndex}
+        paused={true}
         style={styles.backgroundVideo}
       />
       <View style={styles.footer}>

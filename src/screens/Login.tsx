@@ -9,37 +9,41 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
+import {useTextInput} from '../components/FormHook';
 import Icon from '../components/Icon';
 import {FacebookIcon} from '../constants/icons';
-// import { NavigationScreenProps } from "@react-navigation/native";
-// interface NavigationProps {
-//   navigation: NavigationContainerProps;
-// }
+import store from '../store';
+import {authUser} from '../store/actions';
 
 const Login: React.FC<any> = ({navigation}) => {
-  //   const { navigation, login } = props;
-  const [password, setPassword] = useState('');
-  const [uniqueValue, setUniqueValue] = useState('');
+  const [mobileNoOrEmail, setMobileNoOrEmail, mobileNoOrEmailInput] =
+    useTextInput('', '', 'Mobile Number or email', true, '');
+  const [password, setPassword, passwordInput] = useTextInput(
+    '',
+    '',
+    'Password',
+    true,
+    '',
+  );
 
-  const onSignUp = () => {
-    navigation.navigate('Home');
+  const onLogin = () => {
+    const existingUser = authUser(store.users, {mobileNoOrEmail, password});
+    if (existingUser) {
+      navigation.navigate('Home');
+      Alert.alert('Logged in Successfully!');
+    } else {
+      Alert.alert('Not a valid Mobile no/email or Password');
+    }
   };
   return (
     <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={require('../assets/Logo.png')} />
-
-      <TextInput
-        style={styles.inputFiled}
-        placeholder="Phone number, username or email"
-        onChangeText={uniqueValue => setUniqueValue(uniqueValue)}></TextInput>
-      <TextInput
-        style={styles.inputFiled}
-        placeholder="Password"
-        secureTextEntry={true}
-        onChangeText={password => setPassword(password)}></TextInput>
+      {mobileNoOrEmailInput}
+      {passwordInput}
       <TouchableOpacity style={styles.button}>
-        <Button color="#fff" title="Log in" onPress={() => onSignUp()} />
+        <Button color="#fff" title="Log in" onPress={() => onLogin()} />
       </TouchableOpacity>
       <Text style={styles.text}>OR</Text>
       <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -47,7 +51,7 @@ const Login: React.FC<any> = ({navigation}) => {
         <Button
           color="#385185"
           title="Login with facebook"
-          onPress={() => onSignUp()}
+          // onPress={() => onLogin()}
         />
       </TouchableOpacity>
 
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#8e8e8e',
     fontSize: 20,
-    fontWeight: '600',
+    fontWeight: '500',
     lineHeight: 20,
     marginBottom: 20,
   },

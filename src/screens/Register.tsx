@@ -9,16 +9,44 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import Icon from '../components/Icon';
 import {FacebookIcon} from '../constants/icons';
+import {useTextInput} from '../components/FormHook';
+import store from '../store';
+import {addUser} from '../store/actions';
 const Register: React.FC<any> = ({navigation}) => {
-  const [mobileNoOrEmail, setMobileNoOrEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [userName, setUserName] = useState('');
-  const [fullName, setFullName] = useState('');
+  const [mobileNoOrEmail, setMobileNoOrEmail, mobileNoOrEmailInput] =
+    useTextInput('', '', 'Mobile Number or email', true, '');
+  const [password, setPassword, passwordInput] = useTextInput(
+    '',
+    '',
+    'Password',
+    true,
+    '',
+  );
+  const [userName, setUserName, userNameInput] = useTextInput(
+    '',
+    '',
+    'Username',
+    true,
+    '',
+  );
+  const [fullName, setFullName, fullNameInput] = useTextInput(
+    '',
+    '',
+    'Fullname',
+    true,
+    '',
+  );
 
-  const onSignUp = () => {};
+  const onSignUp = () => {
+    store.newUser = {userName, fullName, mobileNoOrEmail, password};
+    store.addUser();
+    Alert.alert('Signed up Successfully!');
+    navigation.navigate('Login');
+  };
   return (
     <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={require('../assets/Logo.png')} />
@@ -34,33 +62,20 @@ const Register: React.FC<any> = ({navigation}) => {
         />
       </TouchableOpacity>
       <Text style={styles.text}>OR</Text>
-      <TextInput
-        style={styles.inputFiled}
-        placeholder="Mobile Number or Email"
-        onChangeText={mobileNoOrEmail =>
-          setMobileNoOrEmail(mobileNoOrEmail)
-        }></TextInput>
-      <TextInput
-        style={styles.inputFiled}
-        placeholder="Username"
-        onChangeText={userName => setUserName(userName)}></TextInput>
-      <TextInput
-        style={styles.inputFiled}
-        placeholder="Full Name"
-        onChangeText={fullName => setFullName(fullName)}></TextInput>
-      <TextInput
-        style={styles.inputFiled}
-        placeholder="Password"
-        secureTextEntry={true}
-        onChangeText={password => setPassword(password)}></TextInput>
+      {mobileNoOrEmailInput}
+      {userNameInput}
+      {fullNameInput}
+      {passwordInput}
       <TouchableOpacity style={styles.button}>
         <Button color="#fff" title="Sign Up" onPress={() => onSignUp()} />
       </TouchableOpacity>
       <Text style={styles.text}>
-        By signing up, you agree to our Terms , Data Policy and Cookies Policy .
+        {
+          'By signing up, you agree to our Terms , Data Policy and Cookies Policy .'
+        }
       </Text>
       <Text style={styles.signUpText}>
-        Have an account?{' '}
+        {'Have an account? '}
         <Text
           style={styles.linkText}
           onPress={() => navigation.navigate('Login')}>
@@ -77,13 +92,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: 45,
-  },
-  inputFiled: {
-    marginTop: 10,
-    marginBottom: 10,
-    padding: 10,
-    backgroundColor: '#eaeaea',
-    width: '100%',
   },
   text: {
     margin: 10,
@@ -104,7 +112,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#8e8e8e',
     fontSize: 20,
-    fontWeight: '600',
+    fontWeight: '500',
     lineHeight: 20,
     marginBottom: 20,
   },

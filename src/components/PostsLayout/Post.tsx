@@ -6,6 +6,8 @@ import {
   Image,
   FlatList,
   Dimensions,
+  Animated,
+  TouchableOpacity,
 } from 'react-native';
 import {PostDataType} from '../../models';
 import {
@@ -14,18 +16,24 @@ import {
   ShareIcon,
   OptionIcon,
   SaveIcon,
+  LikedIcon,
 } from '../../constants/icons';
 import Icon from '../Icon';
+import PostImage from './PostImage';
+import {useNavigation} from '@react-navigation/native';
+import store from '../../store';
 
 const windowWidth = Dimensions.get('window').width;
 const Post: React.FC<PostDataType> = ({
   name,
   images,
   likes,
-  index,
+  id,
   comments,
   description,
 }) => {
+  const navigation = useNavigation();
+
   //header
   const renderPostHeader = () => {
     return (
@@ -34,9 +42,7 @@ const Post: React.FC<PostDataType> = ({
           <Image
             style={styles.profileImage}
             source={{
-              uri: `https://randomuser.me/api/portraits/med/men/${
-                index + 10
-              }.jpg`,
+              uri: `https://randomuser.me/api/portraits/med/men/${id + 10}.jpg`,
             }}
           />
           <Text style={[styles.boldFont, styles.lowercase]}>{name}</Text>
@@ -82,7 +88,7 @@ const Post: React.FC<PostDataType> = ({
           <LikesImageCollage />
           <Text style={[styles.verticalMargin]}>
             {'Liked by '}
-            <Text style={[styles.boldFont, styles.lowercase]}>Will</Text>{' '}
+            <Text style={[styles.boldFont, styles.lowercase]}>Will</Text>
             {'and '}
             <Text style={[styles.boldFont]}>{likes - 1}</Text> others
           </Text>
@@ -103,13 +109,31 @@ const Post: React.FC<PostDataType> = ({
       </View>
     );
   };
+  const handlePostLike = () => {
+    store.postId = id;
+    store.likedPosts.includes(id) ? store.unLikePost() : store.likePost();
+  };
+
+  const handlePostComment = () => {
+    store.postId = id;
+    store.post = store.posts.find(data => data.id === id) as PostDataType;
+    //@ts-ignore
+    navigation.navigate('Comments');
+  };
 
   const renderFooterActions = () => {
     return (
       <View style={styles.footerIconWrapper}>
         <View style={[styles.leftIcons, styles.flexRowCenterSpaceBetween]}>
-          <Icon style={styles.icon} url={LikeIcon} />
-          <Icon style={styles.icon} url={CommentIcon} />
+          <TouchableOpacity onPress={() => handlePostLike()}>
+            <Icon
+              style={styles.icon}
+              url={store.likedPosts.includes(id) ? LikedIcon : LikeIcon}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handlePostComment()}>
+            <Icon style={styles.icon} url={CommentIcon} />
+          </TouchableOpacity>
           <Icon style={styles.icon} url={ShareIcon} />
         </View>
         <Icon style={styles.icon} url={SaveIcon} />
@@ -160,16 +184,8 @@ const Post: React.FC<PostDataType> = ({
           renderToHardwareTextureAndroid
           snapToAlignment="start"
           scrollEventThrottle={16}
-          renderItem={({item, index}) => {
-            console.log('data', item);
-            return (
-              <Image
-                source={{
-                  uri: `${item}?random=${Math.floor(Math.random() * 10 + 1)}`,
-                }}
-                style={styles.image}
-              />
-            );
+          renderItem={({item}) => {
+            return <PostImage url={item} id={id} />;
           }}
           horizontal
           showsHorizontalScrollIndicator={false}

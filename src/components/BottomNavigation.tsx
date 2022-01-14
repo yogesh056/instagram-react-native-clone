@@ -46,7 +46,7 @@ const renderIcon = (iconUrl: ImageProps['source']) => {
 const BottomNavigation = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
-      <Tab.Navigator tabBarPosition="bottom">
+      <Tab.Navigator tabBarPosition="bottom" style={{flex: 1, height: 800}}>
         {NavigationsData.map(
           ({name, iconUrl, component}: NavigationListProps, index) => (
             <Tab.Screen

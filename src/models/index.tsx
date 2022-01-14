@@ -1,12 +1,23 @@
 import {ImageProps} from 'react-native';
-
+export interface User {
+  id?: number;
+  userName: string;
+  fullName: string;
+  mobileNoOrEmail: string;
+  password: string;
+}
 export interface PostDataType {
   name: string;
-  index: number;
+  id: number;
   likes: number;
   description: string;
   images: string[];
-  comments: any[];
+  comments: CommentDataType[];
+}
+export interface CommentDataType {
+  likes: number;
+  comment: string;
+  name: string;
 }
 
 export interface ReelsDataType {

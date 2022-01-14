@@ -1,15 +1,24 @@
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
-import {LogoIcon, AddIcon, MessengerIcon} from '../constants/icons';
+import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+
+import {LogoIcon, AddIcon, MessengerIcon, LogoutIcon} from '../constants/icons';
 import Icon from './Icon';
 
 const Header = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Icon style={styles.logoIcon} url={LogoIcon} />
       <View style={styles.alignSpaceBetween}>
         <Icon url={AddIcon} style={styles.iconMargin} />
-        <Icon url={MessengerIcon} style={styles.iconMargin} />
+        <TouchableOpacity
+          onPress={() => {
+            //@ts-ignore
+            navigation.navigate('Login');
+          }}>
+          <Icon url={LogoutIcon} style={styles.iconMargin} />
+        </TouchableOpacity>
       </View>
     </View>
   );

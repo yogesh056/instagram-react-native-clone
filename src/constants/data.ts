@@ -1,8 +1,8 @@
-import {PostDataType, ReelsDataType, StoryDataType} from '../models';
+import {PostDataType, ReelsDataType, StoryDataType, User} from '../models';
 
 export const PostData: PostDataType[] = [
   {
-    index: 0,
+    id: 0,
     name: 'Robert',
     images: ['https://picsum.photos/400/400'],
     likes: 36,
@@ -16,7 +16,7 @@ export const PostData: PostDataType[] = [
     ],
   },
   {
-    index: 1,
+    id: 1,
     name: 'Macias',
     description: 'Hello',
     images: ['https://picsum.photos/400/400', 'https://picsum.photos/400/400'],
@@ -40,7 +40,7 @@ export const PostData: PostDataType[] = [
     ],
   },
   {
-    index: 2,
+    id: 2,
     name: 'Winnie',
     description: 'Hello',
     images: ['https://picsum.photos/400/400'],
@@ -48,7 +48,7 @@ export const PostData: PostDataType[] = [
     comments: [],
   },
   {
-    index: 3,
+    id: 3,
     name: 'Marsha',
     description: 'Hello',
     images: ['https://picsum.photos/400/400'],
@@ -72,7 +72,7 @@ export const PostData: PostDataType[] = [
     ],
   },
   {
-    index: 4,
+    id: 4,
     name: 'Elaine',
     description: 'Hello',
     images: ['https://picsum.photos/400/400'],
@@ -96,7 +96,7 @@ export const PostData: PostDataType[] = [
     ],
   },
   {
-    index: 5,
+    id: 5,
     name: 'Cohen',
     description: 'Hello',
     images: ['https://picsum.photos/400/400'],
@@ -120,7 +120,7 @@ export const PostData: PostDataType[] = [
     ],
   },
   {
-    index: 6,
+    id: 6,
     name: 'Ila',
     description: 'Hello',
     images: ['https://picsum.photos/400/400'],
@@ -144,7 +144,7 @@ export const PostData: PostDataType[] = [
     ],
   },
   {
-    index: 7,
+    id: 7,
     name: 'Misty',
     description: 'Hello',
     images: ['https://picsum.photos/400/400'],
@@ -168,7 +168,7 @@ export const PostData: PostDataType[] = [
     ],
   },
   {
-    index: 8,
+    id: 8,
     name: 'Adams',
     description: 'Hello',
     images: ['https://picsum.photos/400/400'],
@@ -192,7 +192,7 @@ export const PostData: PostDataType[] = [
     ],
   },
   {
-    index: 9,
+    id: 9,
     name: 'Janette',
     description: 'Hello',
     images: ['https://picsum.photos/400/400'],
@@ -344,5 +344,15 @@ export const ReelsData: ReelsDataType[] = [
       'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
     likes: 321,
     commentsCount: 113,
+  },
+];
+
+export const UsersData: User[] = [
+  {
+    id: 1,
+    userName: 'Yogesh',
+    fullName: 'Yogeshwaran R',
+    mobileNoOrEmail: '8973991312',
+    password: '123',
   },
 ];

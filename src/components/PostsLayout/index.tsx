@@ -1,19 +1,21 @@
 import React from 'react';
 import {View, FlatList} from 'react-native';
 import Post from './Post';
-import {PostData} from '../../constants/data';
+import {observer} from 'mobx-react';
+import store from '../../store';
 
 const PostsLayout = () => {
+  const PostObserver = observer(Post);
   return (
     <View style={{flex: 1}}>
       <FlatList
-        data={PostData}
+        data={store.posts}
         keyExtractor={item => {
-          return item.name;
+          return item.id.toString();
         }}
         renderItem={data => {
           const {item, index} = data;
-          return <Post {...item} />;
+          return <PostObserver {...item} />;
         }}
         showsHorizontalScrollIndicator={false}
       />

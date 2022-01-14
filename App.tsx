@@ -4,11 +4,12 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const LogoIcon = require('./src/assets/Logo.png');
-const Stack = createNativeStackNavigator();
+export const Stack = createNativeStackNavigator();
 
 import Landing from './src/screens/Landing';
 import Register from './src/screens/Register';
 import Login from './src/screens/Login';
+import CommentsLayout from './src/components/CommentsLayout';
 
 export default function App() {
   const Logo = () => {
@@ -16,12 +17,14 @@ export default function App() {
   };
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Register">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
           component={Landing}
           options={{headerShown: false}}
         />
+        <Stack.Screen name={'Comments'} component={CommentsLayout} />
+
         <Stack.Screen
           name="Login"
           component={Login}
