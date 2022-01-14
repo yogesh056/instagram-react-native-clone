@@ -14,8 +14,8 @@ import {
 import {useTextInput} from '../components/FormHook';
 import Icon from '../components/Icon';
 import {FacebookIcon} from '../constants/icons';
-import store from '../store';
 import {authUser} from '../store/actions';
+import user from '../store/user';
 
 const Login: React.FC<any> = ({navigation}) => {
   const [mobileNoOrEmail, setMobileNoOrEmail, mobileNoOrEmailInput] =
@@ -29,7 +29,7 @@ const Login: React.FC<any> = ({navigation}) => {
   );
 
   const onLogin = () => {
-    const existingUser = authUser(store.users, {mobileNoOrEmail, password});
+    const existingUser = authUser(user.users, {mobileNoOrEmail, password});
     if (existingUser) {
       navigation.navigate('Home');
       Alert.alert('Logged in Successfully!');

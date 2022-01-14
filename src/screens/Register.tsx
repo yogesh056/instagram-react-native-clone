@@ -14,8 +14,7 @@ import {
 import Icon from '../components/Icon';
 import {FacebookIcon} from '../constants/icons';
 import {useTextInput} from '../components/FormHook';
-import store from '../store';
-import {addUser} from '../store/actions';
+import user from '../store/user';
 const Register: React.FC<any> = ({navigation}) => {
   const [mobileNoOrEmail, setMobileNoOrEmail, mobileNoOrEmailInput] =
     useTextInput('', '', 'Mobile Number or email', true, '');
@@ -42,8 +41,8 @@ const Register: React.FC<any> = ({navigation}) => {
   );
 
   const onSignUp = () => {
-    store.newUser = {userName, fullName, mobileNoOrEmail, password};
-    store.addUser();
+    user.newUser = {userName, fullName, mobileNoOrEmail, password};
+    user.create();
     Alert.alert('Signed up Successfully!');
     navigation.navigate('Login');
   };
