@@ -1,3 +1,4 @@
+import Reel from '../components/ReelsLayout/Reel';
 import {PostDataType, ReelDataType, UserDataType} from '../models';
 const addUser = (users: UserDataType[], newUser: UserDataType) =>
   [...users, {id: users.length + 1, ...newUser}] as UserDataType[];
@@ -118,45 +119,46 @@ const deleteComment = (
 // };
 
 const likeReel = (
-  posts: ReelDataType[],
-  likedPosts: number[],
-  postId: null | number,
+  reels: ReelDataType[],
+  likedReels: number[],
+  reelId: null | number,
 ): [ReelDataType[], ReelDataType, number[]] => {
-  const selectedPost = getReelById(posts, postId);
-  selectedPost.likes++;
+  const selectedReel = getReelById(reels, reelId);
+  selectedReel.likes++;
+  console.log('like done', selectedReel, reelId);
   return [
-    updateReels(posts, selectedPost, postId) as ReelDataType[],
-    selectedPost as ReelDataType,
-    [...likedPosts, postId] as number[],
+    updateReels(reels, selectedReel, reelId) as ReelDataType[],
+    selectedReel as ReelDataType,
+    [...likedReels, reelId] as number[],
   ];
 };
 
 const unLikeReel = (
-  posts: ReelDataType[],
-  likedPosts: number[],
-  postId: null | number,
+  reels: ReelDataType[],
+  likedReels: number[],
+  reelId: null | number,
 ): [ReelDataType[], ReelDataType, number[]] => {
-  const selectedPost = getReelById(posts, postId);
-  selectedPost.likes--;
+  const selectedReel = getReelById(reels, reelId);
+  selectedReel.likes--;
   return [
-    updateReels(posts, selectedPost, postId) as ReelDataType[],
-    selectedPost as ReelDataType,
-    likedPosts.filter(id => id !== postId) as number[],
+    updateReels(reels, selectedReel, reelId) as ReelDataType[],
+    selectedReel as ReelDataType,
+    likedReels.filter(id => id !== reelId) as number[],
   ];
 };
 
-const getReelById = (posts: ReelDataType[], postId: number | null) => {
-  return posts.find(data => data.id === postId) as ReelDataType;
+const getReelById = (reels: ReelDataType[], reelId: number | null) => {
+  return reels.find(data => data.id === reelId) as ReelDataType;
 };
 
 const updateReels = (
-  posts: ReelDataType[],
-  post: ReelDataType,
-  postId: null | number,
+  reels: ReelDataType[],
+  reel: ReelDataType,
+  reelId: null | number,
 ) => {
-  const tempPosts = [...posts];
-  tempPosts[postId as number] = post;
-  return tempPosts;
+  const tempReels = [...reels];
+  tempReels[reelId as number] = reel;
+  return tempReels;
 };
 export {
   addUser,

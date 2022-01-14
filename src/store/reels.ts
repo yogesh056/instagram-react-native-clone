@@ -51,6 +51,7 @@ class Reel {
       this.likedReels,
       this.selectedId,
     );
+    console.log('liked', this.likedReels, this.selectedId);
     this.reels = reels;
     this.selected = selected;
     this.likedReels = likedReels;

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {View, Text, StatusBar, StyleSheet} from 'react-native';
 import SwiperFlatList from 'react-native-swiper-flatlist';
-import {ReelsData} from '../../constants/data';
 import {CameraIcon} from '../../constants/icons';
+import reel from '../../store/reels';
 import Icon from '../Icon';
 import Reel from './Reel';
 
@@ -16,7 +16,7 @@ const ReelsLayout = () => {
       <StatusBar barStyle={'light-content'} />
       <SwiperFlatList
         vertical={true}
-        data={ReelsData}
+        data={reel.reels}
         onChangeIndex={handleReelsChange}
         renderItem={({item}) => (
           <Reel item={item} currentIndex={currentIndex} />

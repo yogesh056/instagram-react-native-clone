@@ -1,4 +1,5 @@
-import React, {useRef} from 'react';
+import {observer} from 'mobx-react';
+import React, {useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -11,48 +12,62 @@ import Video from 'react-native-video';
 import {
   CameraIcon,
   CommentWhiteIcon,
+  LikedIcon,
   LikeWhiteIcon,
   OptionWhiteIcon,
   ShareWhiteIcon,
 } from '../../constants/icons';
-import {ReelsDataType} from '../../models';
+import {ReelDataType} from '../../models';
+import reel from '../../store/reels';
 import Icon from '../Icon';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 interface ReelProps {
-  item: ReelsDataType;
+  item: ReelDataType;
   currentIndex: number;
 }
 
 const Reel: React.FC<ReelProps> = ({item, currentIndex}) => {
-  const {index, likes, commentsCount, name, description, video} = item;
+  const {id, likes, commentsCount, name, description, video} = item;
+  const [isMuted, setIsMuted] = useState(false);
   const videoRef = useRef(null);
   const onError = () => {};
   const onBuffer = () => {};
-  return (
-    <View style={{flex: 1, height: windowHeight - 129}}>
-      <Video
-        onBuffer={onBuffer}
-        onError={onError}
-        source={{
-          uri: video,
-        }}
-        ref={videoRef}
-        resizeMode="cover"
-        repeat={true}
-        muted={true}
-        // paused={index !== currentIndex}
-        paused={true}
-        style={styles.backgroundVideo}
-      />
+
+  const handleReelLike = () => {
+    reel.selectedId = id;
+    reel.likedReels.includes(id) ? reel.unLike() : reel.like();
+  };
+
+  const renderActions = () => {
+    return (
+      <View style={styles.reelIcons}>
+        <View style={styles.flexColumn}>
+          <TouchableOpacity onPress={() => handleReelLike()}>
+            <Icon
+              url={reel.likedReels.includes(id) ? LikedIcon : LikeWhiteIcon}
+            />
+          </TouchableOpacity>
+          <Text style={[styles.textStyle, {fontSize: 12}]}>{likes}</Text>
+          <Icon url={CommentWhiteIcon} />
+          <Text style={[styles.textStyle, {fontSize: 12}]}>
+            {commentsCount}
+          </Text>
+          <Icon url={ShareWhiteIcon} />
+          <Icon url={OptionWhiteIcon} />
+          <Icon url={CameraIcon} />
+        </View>
+      </View>
+    );
+  };
+  const renderReelsDetails = () => {
+    return (
       <View style={styles.footer}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Image
             style={styles.profileImage}
             source={{
-              uri: `https://randomuser.me/api/portraits/med/men/${
-                50 + index
-              }.jpg`,
+              uri: `https://randomuser.me/api/portraits/med/men/${50 + id}.jpg`,
             }}
           />
           <Text style={[styles.textStyle, {fontSize: 14, marginHorizontal: 8}]}>
@@ -71,19 +86,27 @@ const Reel: React.FC<ReelProps> = ({item, currentIndex}) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.reelIcons}>
-        <View style={styles.flexColumn}>
-          <Icon url={LikeWhiteIcon} />
-          <Text style={[styles.textStyle, {fontSize: 12}]}>{likes}</Text>
-          <Icon url={CommentWhiteIcon} />
-          <Text style={[styles.textStyle, {fontSize: 12}]}>
-            {commentsCount}
-          </Text>
-          <Icon url={ShareWhiteIcon} />
-          <Icon url={OptionWhiteIcon} />
-          <Icon url={CameraIcon} />
-        </View>
-      </View>
+    );
+  };
+  return (
+    <View style={{flex: 1, height: windowHeight - 129}}>
+      <TouchableOpacity onPress={() => setIsMuted(!isMuted)}>
+        <Video
+          onBuffer={onBuffer}
+          onError={onError}
+          source={{
+            uri: video,
+          }}
+          ref={videoRef}
+          resizeMode="cover"
+          repeat={true}
+          muted={isMuted}
+          paused={id !== currentIndex}
+          style={styles.backgroundVideo}
+        />
+      </TouchableOpacity>
+      {renderReelsDetails()}
+      {renderActions()}
     </View>
   );
 };
@@ -132,4 +155,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Reel;
+export default observer(Reel);
