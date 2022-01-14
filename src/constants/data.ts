@@ -1,14 +1,20 @@
-import {PostDataType, ReelsDataType, StoryDataType, User} from '../models';
+import {
+  PostDataType,
+  ReelDataType,
+  StoryDataType,
+  UserDataType,
+} from '../models';
 
 export const PostData: PostDataType[] = [
   {
     id: 0,
     name: 'Robert',
     images: ['https://picsum.photos/400/400'],
-    likes: 36,
+    likes: 42,
     description: 'Hello',
     comments: [
       {
+        id: 1,
         name: 'Courtney',
         likes: 116,
         comment: 'consectetur',
@@ -23,16 +29,19 @@ export const PostData: PostDataType[] = [
     likes: 37,
     comments: [
       {
+        id: 1,
         name: 'Gonzales',
         likes: 153,
         comment: 'do',
       },
       {
+        id: 2,
         name: 'Elsa',
         likes: 15,
         comment: 'voluptate',
       },
       {
+        id: 3,
         name: 'Brennan',
         likes: 79,
         comment: 'amet',
@@ -55,16 +64,19 @@ export const PostData: PostDataType[] = [
     likes: 35,
     comments: [
       {
+        id: 1,
         name: 'Bernadette',
         likes: 54,
         comment: 'velit',
       },
       {
+        id: 2,
         name: 'Gomez',
         likes: 138,
         comment: 'duis',
       },
       {
+        id: 3,
         name: 'Perry',
         likes: 71,
         comment: 'quis',
@@ -79,16 +91,19 @@ export const PostData: PostDataType[] = [
     likes: 34,
     comments: [
       {
+        id: 1,
         name: 'Sonia',
         likes: 181,
         comment: 'labore',
       },
       {
+        id: 2,
         name: 'Ortiz',
         likes: 148,
         comment: 'fugiat',
       },
       {
+        id: 3,
         name: 'Janell',
         likes: 63,
         comment: 'irure',
@@ -103,16 +118,19 @@ export const PostData: PostDataType[] = [
     likes: 21,
     comments: [
       {
+        id: 1,
         name: 'Leonor',
         likes: 154,
         comment: 'ad',
       },
       {
+        id: 2,
         name: 'Alisha',
         likes: 76,
         comment: 'excepteur',
       },
       {
+        id: 3,
         name: 'Vickie',
         likes: 100,
         comment: 'cupidatat',
@@ -125,23 +143,7 @@ export const PostData: PostDataType[] = [
     description: 'Hello',
     images: ['https://picsum.photos/400/400'],
     likes: 37,
-    comments: [
-      {
-        name: 'Dickerson',
-        likes: 190,
-        comment: 'non',
-      },
-      {
-        name: 'Sweet',
-        likes: 22,
-        comment: 'irure',
-      },
-      {
-        name: 'Mckay',
-        likes: 88,
-        comment: 'elit',
-      },
-    ],
+    comments: [],
   },
   {
     id: 7,
@@ -151,19 +153,10 @@ export const PostData: PostDataType[] = [
     likes: 38,
     comments: [
       {
+        id: 1,
         name: 'Janie',
         likes: 43,
         comment: 'aliquip',
-      },
-      {
-        name: 'Summer',
-        likes: 52,
-        comment: 'id',
-      },
-      {
-        name: 'Tabitha',
-        likes: 68,
-        comment: 'veniam',
       },
     ],
   },
@@ -173,23 +166,7 @@ export const PostData: PostDataType[] = [
     description: 'Hello',
     images: ['https://picsum.photos/400/400'],
     likes: 25,
-    comments: [
-      {
-        name: 'Georgia',
-        likes: 62,
-        comment: 'deserunt',
-      },
-      {
-        name: 'Serena',
-        likes: 194,
-        comment: 'incididunt',
-      },
-      {
-        name: 'Gwen',
-        likes: 82,
-        comment: 'sit',
-      },
-    ],
+    comments: [],
   },
   {
     id: 9,
@@ -199,19 +176,16 @@ export const PostData: PostDataType[] = [
     likes: 25,
     comments: [
       {
+        id: 1,
         name: 'Rose',
         likes: 36,
         comment: 'sit',
       },
       {
+        id: 2,
         name: 'Martinez',
         likes: 101,
         comment: 'minim',
-      },
-      {
-        name: 'Hood',
-        likes: 27,
-        comment: 'eu',
       },
     ],
   },
@@ -252,9 +226,9 @@ export const StoryData: StoryDataType[] = [
   },
 ];
 
-export const ReelsData: ReelsDataType[] = [
+export const ReelsData: ReelDataType[] = [
   {
-    index: 0,
+    id: 0,
     name: 'Rhea',
     description: 'Couldn’t be happier 🙂',
     video:
@@ -263,7 +237,7 @@ export const ReelsData: ReelsDataType[] = [
     commentsCount: 80,
   },
   {
-    index: 1,
+    id: 1,
     name: 'Merrill',
     description:
       'In 2021, I want to be as Insta famous as an egg and as ageless as Paul Rudd',
@@ -274,7 +248,7 @@ export const ReelsData: ReelsDataType[] = [
     commentsCount: 53,
   },
   {
-    index: 2,
+    id: 2,
     name: 'Rollins',
     description: 'Having a 🐳 of a time',
     video:
@@ -283,7 +257,7 @@ export const ReelsData: ReelsDataType[] = [
     commentsCount: 64,
   },
   {
-    index: 3,
+    id: 3,
     name: 'Mann',
     description: 'He ordered his regular breakfast. Two eggs sunnyside up',
     video:
@@ -292,7 +266,7 @@ export const ReelsData: ReelsDataType[] = [
     commentsCount: 137,
   },
   {
-    index: 4,
+    id: 4,
     name: 'Hilda',
     description: '🙃🙃 -Turn that frown upside down',
     video:
@@ -301,7 +275,7 @@ export const ReelsData: ReelsDataType[] = [
     commentsCount: 115,
   },
   {
-    index: 5,
+    id: 5,
     name: 'Aurelia',
     description: '☀️❤️- Summer loving',
     video:
@@ -310,7 +284,7 @@ export const ReelsData: ReelsDataType[] = [
     commentsCount: 78,
   },
   {
-    index: 6,
+    id: 6,
     name: 'Conway',
     description: 'He ordered his regular breakfast. Two eggs sunnyside up',
     video:
@@ -319,7 +293,7 @@ export const ReelsData: ReelsDataType[] = [
     commentsCount: 142,
   },
   {
-    index: 7,
+    id: 7,
     name: 'Garrison',
     description: 'He ordered his regular breakfast. Two eggs sunnyside up',
     video:
@@ -328,7 +302,7 @@ export const ReelsData: ReelsDataType[] = [
     commentsCount: 63,
   },
   {
-    index: 8,
+    id: 8,
     name: 'Ingrid',
     description: 'He ordered his regular breakfast. Two eggs sunnyside up',
     video:
@@ -337,7 +311,7 @@ export const ReelsData: ReelsDataType[] = [
     commentsCount: 88,
   },
   {
-    index: 9,
+    id: 9,
     name: 'Phoebe',
     description: 'He ordered his regular breakfast. Two eggs sunnyside up',
     video:
@@ -347,7 +321,7 @@ export const ReelsData: ReelsDataType[] = [
   },
 ];
 
-export const UsersData: User[] = [
+export const UsersData: UserDataType[] = [
   {
     id: 1,
     userName: 'Yogesh',

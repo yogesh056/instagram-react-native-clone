@@ -1,5 +1,5 @@
 import {ImageProps} from 'react-native';
-export interface User {
+export interface UserDataType {
   id?: number;
   userName: string;
   fullName: string;
@@ -15,14 +15,15 @@ export interface PostDataType {
   comments: CommentDataType[];
 }
 export interface CommentDataType {
+  id?: number;
   likes: number;
   comment: string;
   name: string;
 }
 
-export interface ReelsDataType {
+export interface ReelDataType {
   name: string;
-  index: number;
+  id: number;
   likes: number;
   description: string;
   video: string;
@@ -38,6 +39,7 @@ export interface NavigationListProps {
   name: string;
   component: React.ReactNode | undefined;
   iconUrl: ImageProps['source'];
+  iconType?: string;
 }
 
 export interface IconTypeProps {

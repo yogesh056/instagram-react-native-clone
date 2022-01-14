@@ -19,8 +19,10 @@ const ShareIcon = require('../assets/Share.png');
 const SaveIcon = require('../assets/Save.png');
 const OptionIcon = require('../assets/More.png');
 const FacebookIcon = require('../assets/facebook.png');
+const DeleteIcon = require('../assets/Delete.png');
 
 export {
+  DeleteIcon,
   LogoutIcon,
   LikedIcon,
   CameraIcon,
