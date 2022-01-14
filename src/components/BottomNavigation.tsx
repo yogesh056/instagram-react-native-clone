@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, Image, ImageProps} from 'react-native';
+import {SafeAreaView, Image, ImageProps, StyleSheet} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Feed from '../screens/Landing/Feed';
 import {NavigationListProps} from '../models';
@@ -36,10 +36,20 @@ const NavigationsData: NavigationListProps[] = [
     name: 'Profile',
     iconUrl: HomeIcon,
     component: Profile,
+    iconType: 'image',
   },
 ];
 
-const renderIcon = (iconUrl: ImageProps['source']) => {
+const renderIcon = (iconUrl: ImageProps['source'], iconType: string) => {
+  if (iconType)
+    return (
+      <Image
+        style={styles.image}
+        source={{
+          uri: 'https://randomuser.me/api/portraits/med/men/99.jpg',
+        }}
+      />
+    );
   return <Icon url={iconUrl} />;
 };
 
@@ -48,13 +58,17 @@ const BottomNavigation = () => {
     <SafeAreaView style={{flex: 1}}>
       <Tab.Navigator tabBarPosition="bottom" style={{flex: 1, height: 800}}>
         {NavigationsData.map(
-          ({name, iconUrl, component}: NavigationListProps, index) => (
+          (
+            {name, iconUrl, iconType, component}: NavigationListProps,
+            index,
+          ) => (
             <Tab.Screen
               key={index}
               name={name}
               options={{
                 tabBarShowLabel: false,
-                tabBarIcon: () => renderIcon(iconUrl),
+                //@ts-ignore
+                tabBarIcon: () => renderIcon(iconUrl, iconType),
               }}
               //@ts-ignore
               component={component}
@@ -65,4 +79,11 @@ const BottomNavigation = () => {
     </SafeAreaView>
   );
 };
+const styles = StyleSheet.create({
+  image: {
+    height: 30,
+    width: 30,
+    borderRadius: 50,
+  },
+});
 export default BottomNavigation;
