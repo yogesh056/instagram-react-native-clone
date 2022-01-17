@@ -3,7 +3,9 @@ import {View, Text, SafeAreaView, StyleSheet, ScrollView} from 'react-native';
 import Header from '../../components/Header';
 import Postslayout from '../../components/PostsLayout';
 import StoryLayout from '../../components/StoryLayout';
-
+import {LogBox} from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']);
+LogBox.ignoreAllLogs();
 const Feed: React.FC<{}> = () => {
   return (
     <View style={styles.container}>

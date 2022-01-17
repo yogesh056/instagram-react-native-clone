@@ -14,6 +14,7 @@ class Post {
   selectedId: null | number = null;
   selected: PostDataType = {} as PostDataType;
   posts: PostDataType[] = [...PostData];
+  selectedPost: number | null = null;
   likedPosts: number[] = [];
   newComment: CommentDataType = {} as CommentDataType;
   constructor() {

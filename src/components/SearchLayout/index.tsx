@@ -1,12 +1,11 @@
 import {observer} from 'mobx-react';
 import React, {Fragment} from 'react';
 import {View, ScrollView, Dimensions} from 'react-native';
-import post from '../../store/post';
-import HybridGrid from '../Collage/Grids/HybridGrid';
-import ImageGrid from '../Collage/Grids/ImageGrid';
+
 import {useTextInput} from '../FormHook';
 import {LogBox} from 'react-native';
-import ImagePreview from '../ImagePreview';
+import ImageGrid from '../CollageLayout/Grids/ImageGrid';
+import HybridGrid from '../CollageLayout/Grids/HybridGrid';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 const SearchLayout = () => {

@@ -5,6 +5,9 @@ const ShareWhiteIcon = require('../assets/ShareWhite.png');
 const OptionWhiteIcon = require('../assets/MoreWhite.png');
 const LikedIcon = require('../assets/LikedHeart.png');
 const LogoutIcon = require('../assets/Logout.png');
+const ReelsFillIcon = require('../assets/ReelsFill.png');
+const HamburgerIcon = require('../assets/Hamburger.png');
+
 const HomeIcon = require('../assets/Home.png');
 const HomeIconSvg = require('../assets/Home.svg');
 const SearchIcon = require('../assets/Search.png');
@@ -20,9 +23,17 @@ const SaveIcon = require('../assets/Save.png');
 const OptionIcon = require('../assets/More.png');
 const FacebookIcon = require('../assets/facebook.png');
 const DeleteIcon = require('../assets/Delete.png');
+const GridIcon = require('../assets/Grid.png');
+const TaggedIcon = require('../assets/Tagged.png');
+const AddUser = require('../assets/AddUser.png');
 
 export {
+  HamburgerIcon,
   DeleteIcon,
+  ReelsFillIcon,
+  TaggedIcon,
+  AddUser,
+  GridIcon,
   LogoutIcon,
   LikedIcon,
   CameraIcon,

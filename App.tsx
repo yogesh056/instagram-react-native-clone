@@ -3,6 +3,9 @@ import {StyleSheet, View, Image} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+import {LogBox} from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 const LogoIcon = require('./src/assets/Logo.png');
 export const Stack = createNativeStackNavigator();
 
@@ -12,9 +15,6 @@ import Login from './src/screens/Login';
 import CommentsLayout from './src/components/CommentsLayout';
 
 export default function App() {
-  const Logo = () => {
-    return <Image style={styles.logoIcon} source={{uri: LogoIcon}} />;
-  };
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">

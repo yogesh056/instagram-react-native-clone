@@ -9,6 +9,7 @@ import Activity from '../screens/Landing/Activity';
 import Profile from '../screens/Landing/Profile';
 import Icon from './Icon';
 import {HomeIcon, LikeIcon, SearchIcon, ReelsIcon} from '../constants/icons';
+import ImagePreview from './ImagePreview';
 const Tab = createMaterialTopTabNavigator();
 
 const NavigationsData: NavigationListProps[] = [
@@ -76,6 +77,7 @@ const BottomNavigation = () => {
           ),
         )}
       </Tab.Navigator>
+      <ImagePreview />
     </SafeAreaView>
   );
 };
