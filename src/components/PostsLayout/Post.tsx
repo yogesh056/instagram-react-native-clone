@@ -6,7 +6,6 @@ import {
   Image,
   FlatList,
   Dimensions,
-  Animated,
   TouchableOpacity,
 } from 'react-native';
 import {PostDataType} from '../../models';

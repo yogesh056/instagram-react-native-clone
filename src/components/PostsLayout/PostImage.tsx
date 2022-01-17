@@ -1,12 +1,5 @@
 import React, {memo, useCallback, useRef} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  Image,
-  ImageBackground,
-} from 'react-native';
+import {StyleSheet, Dimensions, Image, ImageBackground} from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 import {TapGestureHandler} from 'react-native-gesture-handler';
 

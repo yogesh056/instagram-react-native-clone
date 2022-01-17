@@ -101,7 +101,8 @@ const Reel: React.FC<ReelProps> = ({item, currentIndex}) => {
           resizeMode="cover"
           repeat={true}
           muted={isMuted}
-          paused={id !== currentIndex}
+          // paused={id !== currentIndex}
+          paused={true}
           style={styles.backgroundVideo}
         />
       </TouchableOpacity>

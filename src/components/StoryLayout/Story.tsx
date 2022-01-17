@@ -5,12 +5,15 @@ import LinearGradient from 'react-native-linear-gradient';
 interface StoryProps {
   imageUri: string;
   name: string;
+  seen: boolean;
 }
-const Story: React.FC<StoryProps> = ({imageUri, name}) => {
+const Story: React.FC<StoryProps> = ({seen, imageUri, name}) => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={['#fdf497', '#fd5949', '#d6249f']}
+        colors={
+          seen ? ['#797A7E', '#E5E5E5'] : ['#fdf497', '#fd5949', '#d6249f']
+        }
         style={styles.gradient}>
         <Image style={styles.image} source={{uri: imageUri}} />
       </LinearGradient>

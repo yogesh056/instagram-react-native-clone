@@ -4,7 +4,9 @@ import Post from './Post';
 import {observer} from 'mobx-react';
 import post from '../../store/post';
 import {PostDataType} from '../../models';
-
+import {LogBox} from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 const PostsLayout = () => {
   const limit = 5;
   const [activeData, setActiveData] = React.useState([] as PostDataType[]);

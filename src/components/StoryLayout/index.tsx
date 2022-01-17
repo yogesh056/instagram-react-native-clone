@@ -1,23 +1,10 @@
 import React from 'react';
-import {View, Text, FlatList, StyleSheet, Image} from 'react-native';
-import Story from './Story';
-import {StoryData} from '../../constants/data';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import Icon from '../Icon';
-import {StoryDataType} from '../../models';
 import {PlusIcon} from '../../constants/icons';
-const StoriesLayout = () => {
-  const renderStories = (storyDetails: StoryDataType, storyNo: number) => {
-    const {name, id} = storyDetails;
-    // first story is user story : 0
-    // storyNo 0 is false executes default return
-    if (storyNo)
-      return (
-        <Story
-          imageUri={`https://randomuser.me/api/portraits/med/men/${id}.jpg`}
-          name={name}
-        />
-      );
-    //Your story
+import Stories from './Stories';
+const StoryLayout = () => {
+  const renderAddStory = () => {
     return (
       <View style={styles.addStoryContainer}>
         <View>
@@ -36,18 +23,8 @@ const StoriesLayout = () => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={StoryData}
-        keyExtractor={item => {
-          return item.name;
-        }}
-        renderItem={data => {
-          const {item, index} = data;
-          return renderStories(item, index);
-        }}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-      />
+      {renderAddStory()}
+      <Stories />
     </View>
   );
 };
@@ -65,7 +42,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   addStoryContainer: {
-    flex: 1,
+    // flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
@@ -91,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StoriesLayout;
+export default StoryLayout;

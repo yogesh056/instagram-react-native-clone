@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import Swipeout from 'react-native-swipeout';
 import {DeleteIcon, LikeIcon} from '../../constants/icons';
 import {CommentDataType} from '../../models';
