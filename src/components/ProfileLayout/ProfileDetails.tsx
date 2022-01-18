@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
   buttonStyle: {
     textAlign: 'center',
     borderColor: 'black',
-    borderWidth: 1,
+    borderRadius: 5,
+    borderWidth: 1.5,
     color: 'black',
     fontSize: 14,
     fontWeight: '600',

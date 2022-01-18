@@ -5,19 +5,16 @@ import {
   TextInput,
   View,
   Text,
-  Linking,
   Image,
   StyleSheet,
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import {useTextInput} from '../components/FormHook';
-import Icon from '../components/Icon';
-import {FacebookIcon} from '../constants/icons';
-import {authUser} from '../store/actions';
-import user from '../store/user';
-
-const Login: React.FC<any> = ({navigation}) => {
+import {useTextInput} from '../../components/Forms/FormHook';
+import Icon from '../../components/Icon';
+import {FacebookIcon} from '../../constants/icons';
+import user from '../../store/user';
+const Register: React.FC<any> = ({navigation}) => {
   const [mobileNoOrEmail, setMobileNoOrEmail, mobileNoOrEmailInput] =
     useTextInput('', '', 'Mobile Number or email', true, '');
   const [password, setPassword, passwordInput] = useTextInput(
@@ -27,60 +24,72 @@ const Login: React.FC<any> = ({navigation}) => {
     true,
     '',
   );
+  const [userName, setUserName, userNameInput] = useTextInput(
+    '',
+    '',
+    'Username',
+    true,
+    '',
+  );
+  const [fullName, setFullName, fullNameInput] = useTextInput(
+    '',
+    '',
+    'Fullname',
+    true,
+    '',
+  );
 
-  const onLogin = () => {
-    const existingUser = authUser(user.users, {mobileNoOrEmail, password});
-    if (existingUser) {
-      navigation.navigate('Home');
-      Alert.alert('Logged in Successfully!');
-    } else {
-      Alert.alert('Not a valid Mobile no/email or Password');
-    }
+  const onSignUp = () => {
+    user.newUser = {userName, fullName, mobileNoOrEmail, password};
+    user.create();
+    Alert.alert('Signed up Successfully!');
+    navigation.navigate('Login');
   };
   return (
     <SafeAreaView style={styles.container}>
-      <Image style={styles.logo} source={require('../assets/Logo.png')} />
-      {mobileNoOrEmailInput}
-      {passwordInput}
-      <TouchableOpacity style={styles.button}>
-        <Button color="#fff" title="Log in" onPress={() => onLogin()} />
-      </TouchableOpacity>
-      <Text style={styles.text}>OR</Text>
+      <Image style={styles.logo} source={require('../../assets/Logo.png')} />
+      <Text style={styles.headText}>
+        Sign up to see photos and videos from your friends.
+      </Text>
       <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
         <Icon url={FacebookIcon} style={{width: 16, height: 16}} />
         <Button
           color="#385185"
           title="Login with facebook"
-          // onPress={() => onLogin()}
+          onPress={() => onSignUp()}
         />
       </TouchableOpacity>
-
-      <Text style={styles.text}>Forgot Password ?</Text>
+      <Text style={styles.text}>OR</Text>
+      {mobileNoOrEmailInput}
+      {userNameInput}
+      {fullNameInput}
+      {passwordInput}
+      <TouchableOpacity style={styles.button}>
+        <Button color="#fff" title="Sign Up" onPress={() => onSignUp()} />
+      </TouchableOpacity>
+      <Text style={styles.text}>
+        {
+          'By signing up, you agree to our Terms , Data Policy and Cookies Policy .'
+        }
+      </Text>
       <Text style={styles.signUpText}>
-        {"Don't Have an account? "}
+        {'Have an account? '}
         <Text
           style={styles.linkText}
-          onPress={() => navigation.navigate('Register')}>
-          Sign up
+          onPress={() => navigation.navigate('Login')}>
+          Log in
         </Text>
       </Text>
     </SafeAreaView>
   );
 };
-export default Login;
+export default Register;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     margin: 45,
-  },
-  inputFiled: {
-    marginTop: 10,
-    marginBottom: 10,
-    padding: 10,
-    backgroundColor: '#eaeaea',
-    width: '100%',
   },
   text: {
     margin: 10,

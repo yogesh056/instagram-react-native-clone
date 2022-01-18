@@ -17,7 +17,7 @@ const Stories: React.FC<{}> = () => {
         } = data;
         return (
           <Story
-            seen={true}
+            seen={false}
             imageUri={`https://randomuser.me/api/portraits/med/men/${id}.jpg`}
             name={name}
           />

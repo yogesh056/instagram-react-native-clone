@@ -1,15 +1,18 @@
 import React from 'react';
-import {SafeAreaView, Image, ImageProps, StyleSheet} from 'react-native';
+import {SafeAreaView, Image, ImageProps, StyleSheet, View} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import Feed from '../screens/Landing/Feed';
 import {NavigationListProps} from '../models';
-import Search from '../screens/Landing/Search';
-import ReelsScreen from '../screens/Landing/ReelsScreen';
-import Activity from '../screens/Landing/Activity';
-import Profile from '../screens/Landing/Profile';
 import Icon from './Icon';
 import {HomeIcon, LikeIcon, SearchIcon, ReelsIcon} from '../constants/icons';
 import ImagePreview from './ImagePreview';
+import Feed from '../screens/Landing/NavigationScreens/Feed';
+import Search from '../screens/Landing/NavigationScreens/Search';
+import ReelsScreen from '../screens/Landing/NavigationScreens/ReelsScreen';
+import Activity from '../screens/Landing/NavigationScreens/Activity';
+import Profile from '../screens/Landing/NavigationScreens/Profile';
+import MessageModal from '../screens/Landing/Modals/MessageModal';
+import {observer} from 'mobx-react';
+
 const Tab = createMaterialTopTabNavigator();
 
 const NavigationsData: NavigationListProps[] = [
@@ -78,6 +81,7 @@ const BottomNavigation = () => {
         )}
       </Tab.Navigator>
       <ImagePreview />
+      <MessageModal />
     </SafeAreaView>
   );
 };
@@ -88,4 +92,4 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
 });
-export default BottomNavigation;
+export default observer(BottomNavigation);

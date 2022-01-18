@@ -9,7 +9,6 @@ import Icon from '../Icon';
 const Comments: React.FC<CommentDataType> = ({name, likes, comment, id}) => {
   let swipeActions = [
     {
-      // text: 'Delete',
       component: (
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <Icon url={DeleteIcon} style={{width: 20, height: 20}} />

@@ -7,9 +7,8 @@ import {
   Dimensions,
   SafeAreaView,
 } from 'react-native';
-import SearchLayout from '../../components/SearchLayout';
+import SearchLayout from '../../../components/SearchLayout';
 
-const {width, height} = Dimensions.get('window');
 const Search = () => {
   return (
     <SafeAreaView style={styles.container}>

@@ -14,6 +14,7 @@ const PostsLayout = () => {
   }, []);
   const fetchNextItems = () => {
     if (scrollIndex <= 4) {
+      // partial
       setActiveData(post.posts.slice(scrollIndex, limit * scrollIndex));
       console.log('limits', scrollIndex, limit * scrollIndex);
       setScrollIndex(scrollIndex + 1);
@@ -25,7 +26,7 @@ const PostsLayout = () => {
   return (
     <View style={{flex: 1, height: Dimensions.get('window').height * 0.86}}>
       <FlatList
-        data={activeData}
+        data={post.posts}
         keyExtractor={item => {
           return item.id.toString();
         }}
@@ -33,10 +34,10 @@ const PostsLayout = () => {
           const {item, index} = data;
           return <Post {...item} />;
         }}
-        initialNumToRender={2}
-        onEndReachedThreshold={0.5}
-        onEndReached={() => fetchNextItems()}
-        ListFooterComponent={renderFooter()}
+        // initialNumToRender={2}
+        // onEndReachedThreshold={0.5}
+        // onEndReached={() => fetchNextItems()}
+        // ListFooterComponent={renderFooter()}
         showsHorizontalScrollIndicator={false}
       />
     </View>

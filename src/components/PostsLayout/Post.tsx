@@ -21,6 +21,7 @@ import Icon from '../Icon';
 import PostImage from './PostImage';
 import {useNavigation} from '@react-navigation/native';
 import post from '../../store/post';
+import {observer} from 'mobx-react';
 
 const windowWidth = Dimensions.get('window').width;
 const Post: React.FC<PostDataType> = ({
@@ -109,6 +110,7 @@ const Post: React.FC<PostDataType> = ({
     );
   };
   const handlePostLike = () => {
+    console.log('Likes', post.selectPost, post.likedPosts);
     post.selectedId = id;
     post.likedPosts.includes(id) ? post.unLike() : post.like();
   };
@@ -202,7 +204,7 @@ const Post: React.FC<PostDataType> = ({
   );
 };
 
-export default Post;
+export default observer(Post);
 
 const styles = StyleSheet.create({
   container: {

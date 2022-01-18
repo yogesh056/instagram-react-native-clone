@@ -88,8 +88,9 @@ const Reel: React.FC<ReelProps> = ({item, currentIndex}) => {
       </View>
     );
   };
-  return (
-    <View style={{flex: 1, height: windowHeight - 129}}>
+
+  const renderVideo = () => {
+    return (
       <TouchableOpacity onPress={() => setIsMuted(!isMuted)}>
         <Video
           onBuffer={onBuffer}
@@ -106,6 +107,11 @@ const Reel: React.FC<ReelProps> = ({item, currentIndex}) => {
           style={styles.backgroundVideo}
         />
       </TouchableOpacity>
+    );
+  };
+  return (
+    <View style={{flex: 1, height: windowHeight - 129}}>
+      {renderVideo()}
       {renderReelsDetails()}
       {renderActions()}
     </View>

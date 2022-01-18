@@ -7,11 +7,11 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import {useTextInput} from '../FormHook';
 import Comments from './Comments';
 
 import {observer} from 'mobx-react';
 import post from '../../store/post';
+import {useTextInput} from '../Forms/FormHook';
 
 const CommentsLayout: React.FC<{}> = ({}) => {
   const [newComment, setNewComment, commentInput] = useTextInput(

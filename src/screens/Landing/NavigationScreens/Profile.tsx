@@ -2,15 +2,15 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import React from 'react';
 import {View, Image, ImageProps, StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import Icon from '../../components/Icon';
 
-import Stories from '../../components/StoryLayout/Stories';
-import {GridIcon, ReelsIcon, TaggedIcon} from '../../constants/icons';
-import {NavigationListProps} from '../../models';
-import ProfileHeader from '../../components/ProfileLayout/ProfileHeader';
-import ProfileDetails from '../../components/ProfileLayout/ProfileDetails';
-import ImageGrid from '../../components/CollageLayout/Grids/ImageGrid';
-import VideoGrid from '../../components/CollageLayout/Grids/VideoGrid';
+import Stories from '../../../components/StoryLayout/Stories';
+import {GridIcon, ReelsIcon, TaggedIcon} from '../../../constants/icons';
+import {NavigationListProps} from '../../../models';
+import ProfileHeader from '../../../components/ProfileLayout/ProfileHeader';
+import ProfileDetails from '../../../components/ProfileLayout/ProfileDetails';
+import ImageGrid from '../../../components/CollageLayout/Grids/ImageGrid';
+import VideoGrid from '../../../components/CollageLayout/Grids/VideoGrid';
+import Icon from '../../../components/Icon';
 
 const Tab = createMaterialTopTabNavigator();
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];

@@ -4,6 +4,8 @@ import {useNavigation} from '@react-navigation/native';
 
 import {LogoIcon, AddIcon, MessengerIcon, LogoutIcon} from '../constants/icons';
 import Icon from './Icon';
+import {observer} from 'mobx-react';
+import appStore from '../store';
 
 const Header = () => {
   const navigation = useNavigation();
@@ -12,6 +14,9 @@ const Header = () => {
       <Icon style={styles.logoIcon} url={LogoIcon} />
       <View style={styles.alignSpaceBetween}>
         <Icon url={AddIcon} style={styles.iconMargin} />
+        <TouchableOpacity onPress={() => appStore.toggleMessageModal(true)}>
+          <Icon url={MessengerIcon} style={styles.iconMargin} />
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             //@ts-ignore
@@ -24,7 +29,7 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default observer(Header);
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',

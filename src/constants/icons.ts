@@ -26,9 +26,19 @@ const DeleteIcon = require('../assets/Delete.png');
 const GridIcon = require('../assets/Grid.png');
 const TaggedIcon = require('../assets/Tagged.png');
 const AddUser = require('../assets/AddUser.png');
+const CameraIcon2 = require('../assets/Camera2.png');
+const CamerFillIcon = require('../assets/CameraFill.png');
+const WriteIcon = require('../assets/Write.png');
+const VideoIcon = require('../assets/Video.png');
+const BackIcon = require('../assets/Back.png');
 
 export {
   HamburgerIcon,
+  BackIcon,
+  CamerFillIcon,
+  CameraIcon2,
+  WriteIcon,
+  VideoIcon,
   DeleteIcon,
   ReelsFillIcon,
   TaggedIcon,
