@@ -4,12 +4,12 @@ import {CommentDataType, ReelDataType} from '../models';
 import {
   unLikeReel,
   likeReel,
-  addComment,
+  // addComment,
   getReelById,
-  deleteComment,
+  // deleteComment,
   //   deleteReelComment,
   //   addReelComment,
-} from './actions';
+} from './actions/reels';
 
 class Reel {
   selectedId: null | number = null;

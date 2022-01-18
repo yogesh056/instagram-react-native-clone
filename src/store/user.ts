@@ -1,7 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 import {UsersData} from '../constants/data';
 import {UserDataType} from '../models';
-import {addUser} from './actions';
+import {addUser} from './actions/user';
 
 class User {
   users: UserDataType[] = [...UsersData];

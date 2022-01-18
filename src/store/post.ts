@@ -7,10 +7,9 @@ import {
   addComment,
   getPostById,
   deleteComment,
-} from './actions';
+} from './actions/post';
 
 class Post {
-  //post
   selectedId: null | number = null;
   selected: PostDataType = {} as PostDataType;
   posts: PostDataType[] = [...PostData];
@@ -20,7 +19,7 @@ class Post {
   constructor() {
     makeAutoObservable(this);
   }
-  //post
+
   addComment() {
     const [posts, selected] = addComment(
       this.posts,
@@ -63,8 +62,6 @@ class Post {
     this.likedPosts = likedPosts;
   }
 }
-// autorun(() => {
-//   if (post.selectedId) post.selected = getPostById(post.posts, post.selectedId);
-// });
+
 const post = new Post();
 export default post;

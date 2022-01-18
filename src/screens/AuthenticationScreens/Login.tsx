@@ -11,7 +11,7 @@ import {
 import {useTextInput} from '../../components/Forms/FormHook';
 import Icon from '../../components/Icon';
 import {FacebookIcon} from '../../constants/icons';
-import {authUser} from '../../store/actions';
+import {authUser} from '../../store/actions/user';
 import user from '../../store/user';
 
 const Login: React.FC<any> = ({navigation}) => {
